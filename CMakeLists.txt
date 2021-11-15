@@ -8,4 +8,7 @@ include_directories(include)
 add_executable(List
         include/List.h
         src/ListFunc.cpp
-        src/ListMain.cpp)
+        src/ListMain.cpp
+        src/ListDump.cpp
+        src/ListTest.cpp
+        src/ListErrorCheck.cpp)

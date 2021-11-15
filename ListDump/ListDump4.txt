@@ -3,13 +3,13 @@ digraph Dump
 	rankdir = LR;
 	"After function: ListInsertBack"
 
-	Pointers [shape = record, label = " head: 1 | tail: 2 | free: 3 "];
+	Pointers [shape = record, label = " head: 1 | tail: 4 | free: 5 "];
 
 	Node0 [shape = record, label = " 0 | data: 0 | <next> next: 0 | <prev> prev: 0"];
 	Node1 [shape = record, label = " 1 | data: 10 | <next> next: 2 | <prev> prev: 0"];
-	Node2 [shape = record, label = " 2 | data: 20 | <next> next: 0 | <prev> prev: 1"];
-	Node3 [shape = record, label = " 3 | data: 0 | <next> next: 4 | <prev> prev: -1"];
-	Node4 [shape = record, label = " 4 | data: 0 | <next> next: 5 | <prev> prev: -1"];
+	Node2 [shape = record, label = " 2 | data: 20 | <next> next: 3 | <prev> prev: 1"];
+	Node3 [shape = record, label = " 3 | data: 30 | <next> next: 4 | <prev> prev: 2"];
+	Node4 [shape = record, label = " 4 | data: 40 | <next> next: 0 | <prev> prev: 3"];
 	Node5 [shape = record, label = " 5 | data: 0 | <next> next: 0 | <prev> prev: -1"];
 
 	edge[color=white]
