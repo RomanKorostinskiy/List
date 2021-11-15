@@ -70,7 +70,6 @@ int MakeGraphDumpTxt(List* list, const char* current_function, int dump_cnt)
     }
 
     fprintf(dump_fp, "\n\tedge[color=white]\n");
-
     fprintf(dump_fp, "\t");
     for(int i = 0; i <= list->capacity; i++)
     {
@@ -80,10 +79,8 @@ int MakeGraphDumpTxt(List* list, const char* current_function, int dump_cnt)
             fprintf(dump_fp, "Node%d -> ", i);
     }
 
-    fprintf(dump_fp, "\n\t");
-
     fprintf(dump_fp, "\n\tedge[color=black]\n");
-
+    fprintf(dump_fp, "\t");
     int i = list->head;
     while(true)
     {

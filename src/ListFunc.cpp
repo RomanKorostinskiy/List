@@ -14,7 +14,9 @@ int ListCtor(List* list, int capacity)
     list->tail = 1;
     list->free = 1;
 
+#ifdef LIST_DUMP
     ListDump(list, __FUNCTION__);
+#endif
 
     return 0;
 }
@@ -91,7 +93,7 @@ int ListResize(List* list)
 
     if (list->elem == nullptr)
     {
-        printf("In function LestResize: can't realloc memory");
+        printf("In function LestResize: can't realloc memory\n");
         return REALLOC_ERROR;
     }
 
@@ -99,7 +101,9 @@ int ListResize(List* list)
 
     SetListMemResize(list, old_capacity);
 
+#ifdef LIST_DUMP
     ListDump(list, __FUNCTION__);
+#endif
 
     return 0;
 }
@@ -168,7 +172,9 @@ int ListInsertBack(List* list, data_t value)
         list->elem[list->tail].next = 0; //6
     }
 
+#ifdef LIST_DUMP
     ListDump(list, __FUNCTION__);
+#endif
 
     return list->tail;
 }
@@ -205,7 +211,9 @@ int ListInsertFront(List* list, data_t value)
         list->free = new_free; //6
     }
 
+#ifdef LIST_DUMP
     ListDump(list, __FUNCTION__);
+#endif
 
     return list->head;
 }
@@ -216,7 +224,7 @@ int ListInsertBefore(List* list, int position, data_t value)
 
     if(list->elem[position].prev == -1)
     {
-        printf("In Function ListInsertBefore: can't insert before free node");
+        printf("In Function ListInsertBefore: can't insert before free node\n");
         return INSERT_ERROR;
     }
 
@@ -233,9 +241,9 @@ int ListInsertBefore(List* list, int position, data_t value)
     //Other element
     else
     {
-        list->elem[list->free].prev = list->elem[position].prev; //2
+        list->elem[current_elem_position].prev = list->elem[position].prev; //2
 
-        list->free = list->elem[list->free].next; //3
+        list->free = list->elem[current_elem_position].next; //3
 
         list->elem[current_elem_position].next = list->elem[list->elem[position].prev].next; //4
 
@@ -243,7 +251,89 @@ int ListInsertBefore(List* list, int position, data_t value)
                    list->elem[position].prev       = current_elem_position; //6
     }
 
+#ifdef LIST_DUMP
     ListDump(list, __FUNCTION__);
+#endif
 
     return current_elem_position;
+}
+
+int ListInsertAfter(List* list, int position, data_t value)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    if(list->elem[position].prev == -1)
+    {
+        printf("In Function ListInsertAfter: can't insert after free node\n");
+        return INSERT_ERROR;
+    }
+
+    if(list->free == 0)
+        ListResize(list);
+
+    list->elem[list->free].data = value; //1
+
+    int current_elem_position = list->free;
+
+    //After last element
+    if (list->elem[position].next == 0)
+        return ListInsertBack(list, value);
+    //Other element
+    else
+    {
+        list->elem[current_elem_position].prev = list->elem[list->elem[position].next].prev; //2
+
+        list->free = list->elem[current_elem_position].next; //3
+
+        list->elem[current_elem_position].next = list->elem[position].next; //4
+
+        list->elem[list->elem[position].next].prev = current_elem_position; //5
+        list->elem[position].next                  = current_elem_position; //6
+    }
+
+#ifdef LIST_DUMP
+    ListDump(list, __FUNCTION__);
+#endif
+
+    return current_elem_position;
+}
+
+int ListDeleteBack(List* list)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    if (list->head == list->free)
+    {
+        printf("In Function ListDeleteBack: list is empty\n");
+        return INSERT_ERROR;
+    }
+
+    list->elem[list->tail].data = 0; //1
+
+    //First element
+    if(list->elem[list->tail].prev == 0)
+    {
+        list->elem[list->tail].next = list->free;
+        list->elem[list->tail].prev = -1;
+
+        list->free = list->tail;
+    }
+    //Other element
+    else
+    {
+        list->elem[list->tail].next = list->free; //2
+        list->elem[list->elem[list->tail].prev].next = 0; //3
+
+        list->free = list->tail; //4
+
+        list->tail = list->elem[list->tail].prev; //5
+
+        list->elem[list->free].prev = -1; //6
+    }
+
+#ifdef LIST_DUMP
+    ListDump(list, __FUNCTION__);
+#endif
+
+    return list->tail;
 }

@@ -23,7 +23,8 @@ int ListErrorCheck(List* list, const char* func)
             printf("In Function %s: elem is nullptr\n", func);
             return ELEM_NULL_PTR;
         }
-        if(strcmp(func, "ListInsertBack") == 0 || strcmp(func, "ListInsertFront") == 0)
+        if(strcmp(func, "ListInsertBack") == 0 || strcmp(func, "ListInsertFront") == 0 ||
+           strcmp(func, "ListInsertBefore") == 0)
         {
             if (list->free > list->capacity)
             {

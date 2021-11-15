@@ -1,0 +1,22 @@
+digraph Dump
+{
+	rankdir = LR;
+	"After function: ListDeleteBack"
+
+	ListInfo [shape = record, label = " head: 5 | tail: 6 | free: 4 | capacity: 8 "];
+
+	Node0 [shape = record, label = " phys adr: 0 | logic adr: -1 | data: 0 | <next> next: 0 | <prev> prev: -1"];
+	Node1 [shape = record, label = " phys adr: 1 | logic adr: -1 | data: 0 | <next> next: 7 | <prev> prev: -1"];
+	Node2 [shape = record, label = " phys adr: 2 | logic adr: -1 | data: 0 | <next> next: 3 | <prev> prev: -1"];
+	Node3 [shape = record, label = " phys adr: 3 | logic adr: -1 | data: 0 | <next> next: 8 | <prev> prev: -1"];
+	Node4 [shape = record, label = " phys adr: 4 | logic adr: -1 | data: 0 | <next> next: 1 | <prev> prev: -1"];
+	Node5 [shape = record, label = " phys adr: 5 | logic adr: 1 | data: 8 | <next> next: 6 | <prev> prev: 0"];
+	Node6 [shape = record, label = " phys adr: 6 | logic adr: 2 | data: 1 | <next> next: 0 | <prev> prev: 5"];
+	Node7 [shape = record, label = " phys adr: 7 | logic adr: -1 | data: 0 | <next> next: 2 | <prev> prev: -1"];
+	Node8 [shape = record, label = " phys adr: 8 | logic adr: -1 | data: 0 | <next> next: 0 | <prev> prev: -1"];
+
+	edge[color=white]
+	Node0 -> Node1 -> Node2 -> Node3 -> Node4 -> Node5 -> Node6 -> Node7 -> Node8
+	edge[color=black]
+	Node5 -> Node6 -> Node0
+}

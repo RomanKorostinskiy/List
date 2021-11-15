@@ -7,11 +7,15 @@
 #define INT_DATA
 
 #ifdef INT_DATA
+#undef FLOAT_DATA
 typedef int data_t;
 #endif
 #ifdef FLOAT_DATA
+#undef INT_DATA
 typedef double data_t;
 #endif
+
+#define LIST_DUMP
 
 enum ListErrors
 {
@@ -78,6 +82,10 @@ int ListInsertBack(List* list, int value);
 int ListInsertFront(List* list, data_t value);
 
 int ListInsertBefore(List* list, int position, data_t value);
+
+int ListInsertAfter(List* list, int position, data_t value);
+
+int ListDeleteBack(List* list);
 
 //---------ListErrorCheckFunctions---------
 
