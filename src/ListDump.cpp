@@ -65,7 +65,7 @@ int MakeGraphDumpTxt(List* list, const char* current_function, int dump_cnt)
     for(int i = 0; i <= list->capacity; i++)
     {
         fprintf(dump_fp, "\tNode%d [shape = record, label = "
-                         "\" phys adr: %d | logical adr: %d | data: %d | <next> next: %d | <prev> prev: %d\"];\n",
+                         "\" phys adr: %d | logic adr: %d | data: %d | <next> next: %d | <prev> prev: %d\"];\n",
                 i, i, GetLogicalAddress(list, i), list->elem[i].data, list->elem[i].next, list->elem[i].prev);
     }
 
@@ -78,6 +78,22 @@ int MakeGraphDumpTxt(List* list, const char* current_function, int dump_cnt)
             fprintf(dump_fp, "Node%d", i);
         else
             fprintf(dump_fp, "Node%d -> ", i);
+    }
+
+    fprintf(dump_fp, "\n\t");
+
+    fprintf(dump_fp, "\n\tedge[color=black]\n");
+
+    int i = list->head;
+    while(true)
+    {
+        if(list->elem[i].prev == -1)
+        {
+            fprintf(dump_fp, "Node%d", i);
+            break;
+        }
+        fprintf(dump_fp, "Node%d -> ", i);
+        i = list->elem[i].next;
     }
 
     fprintf(dump_fp, "\n}");
