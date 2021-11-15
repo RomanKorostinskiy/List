@@ -1,6 +1,6 @@
 #include <../include/List.h>
 
-int ListDump (List* list, const char* current_function)
+int ListDump(List* list, const char* current_function)
 {
     LIST_CHECK(__FUNCTION__);
 
@@ -58,15 +58,15 @@ int MakeGraphDumpTxt(List* list, const char* current_function, int dump_cnt)
 
     fprintf(dump_fp, "\t\"After function: %s\"\n\n", current_function);
 
-    fprintf(dump_fp, "\tPointers [shape = record, label = "
-                     "\" head: %d | tail: %d | free: %d \"];\n\n",
-            list->head, list->tail, list->free);
+    fprintf(dump_fp, "\tListInfo [shape = record, label = "
+                     "\" head: %d | tail: %d | free: %d | capacity: %d \"];\n\n",
+            list->head, list->tail, list->free, list->capacity);
 
     for(int i = 0; i <= list->capacity; i++)
     {
         fprintf(dump_fp, "\tNode%d [shape = record, label = "
-                         "\" %d | data: %d | <next> next: %d | <prev> prev: %d\"];\n",
-                i, i, list->elem[i].data, list->elem[i].next, list->elem[i].prev);
+                         "\" phys adr: %d | logical adr: %d | data: %d | <next> next: %d | <prev> prev: %d\"];\n",
+                i, i, GetLogicalAddress(list, i), list->elem[i].data, list->elem[i].next, list->elem[i].prev);
     }
 
     fprintf(dump_fp, "\n\tedge[color=white]\n");

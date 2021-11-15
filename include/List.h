@@ -21,6 +21,7 @@ enum ListErrors
     LIST_DOUBLE_CTED = 4,
     LIST_IS_OVERFL   = 5,
     INSERT_ERROR     = 6,
+    REALLOC_ERROR    = 7,
 };
 
 typedef struct ListElem
@@ -51,25 +52,40 @@ do  \
         return error;   \
 }while (0) \
 
-const int LIST_CAPACITY = 5;
+const int LIST_START_CAPACITY = 2;
+const int CAPACITY_STEP = 2;
 
 //---------ListFunctions---------
 
-int ListCtor (List* list, int capacity);
+int ListCtor(List* list, int capacity);
 
-int ListDtor (List* list);
+int ListDtor(List* list);
 
-int SetListMem (List* list);
+int SetListMemCtor(List* list);
 
-int SetListMemPoison (List* list);
+int SetListMemPoison(List* list);
 
-int ListInsertBack (List* list, int value);
+int SetListMemResize(List* list, int old_capacity);
+
+int ListResize(List* list);
+
+int GetPhysAddress(List* list, int logical_adr);
+
+int GetLogicalAddress(List* list, int phys_adr);
+
+int ListInsertBack(List* list, int value);
+
+int ListInsertFront(List* list, data_t value);
+
+int ListInsertBefore(List* list, int position, data_t value);
+
+//---------ListErrorCheckFunctions---------
 
 int ListErrorCheck(List* list, const char* func);
 
 //---------ListDumpFunctions---------
 
-int ListDump (List* list, const char* current_function);
+int ListDump(List* list, const char* current_function);
 
 int MakeTextDump(List* list, FILE* dump_fp, const char* current_function); //Больше не используется
 
@@ -83,4 +99,6 @@ char* DumpFileName(int dump_cnt, const char* format);
 
 //---------ListTestFunctions---------
 
-int ListInsertBackTest (List* list, int elems_num);
+int ListInsertBackTest(List* list, int elems_num);
+
+int ListInsertFrontTest(List* list, int elems_num);
