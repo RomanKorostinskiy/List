@@ -4,6 +4,8 @@ int ListDump(List* list, const char* current_function)
 {
     LIST_CHECK(__FUNCTION__);
 
+//    int cringe = *((int*) 1000 - 7);
+
     static int dump_cnt = 0;
 
     MakeGraphDumpTxt(list, current_function, dump_cnt);

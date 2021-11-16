@@ -93,10 +93,13 @@ int ListResize(List* list)
     int old_capacity = list->capacity;
     list->capacity *= CAPACITY_STEP;
 
+    ListElem* list_save_elems = list->elem;
+
     list->elem = (ListElem*) realloc(list->elem, (list->capacity + 1) * sizeof(ListElem));
 
     if (list->elem == nullptr)
     {
+        list->elem = list_save_elems;
         printf("In function %s: can't realloc memory\n", __FUNCTION__);
         return REALLOC_ERROR;
     }

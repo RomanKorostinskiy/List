@@ -107,7 +107,7 @@ int ListInsertBefore(List* list, int position, data_t value)
 
         list->free = list->elem[current_elem_position].next; //3
 
-        list->elem[current_elem_position].next = list->elem[list->elem[position].prev].next; //4
+        list->elem[current_elem_position].next = position; //4
 
         list->elem[list->elem[position].prev].next = current_elem_position; //5
         list->elem[position].prev       = current_elem_position; //6
@@ -145,7 +145,7 @@ int ListInsertAfter(List* list, int position, data_t value)
         //Other element
     else
     {
-        list->elem[current_elem_position].prev = list->elem[list->elem[position].next].prev; //2
+        list->elem[current_elem_position].prev = position; //2
 
         list->free = list->elem[current_elem_position].next; //3
 
