@@ -15,13 +15,7 @@ int main()
 
     ListDeleteBack(&list);
     ListInsertBack(&list, 15);
-    ListDeleteBack(&list);
-    ListDeleteBack(&list);
-    ListDeleteBack(&list);
-    ListDeleteBack(&list);
-    ListDeleteBack(&list);
-    ListDeleteBack(&list);
-    ListDeleteBack(&list);
+    ListDeleteFront(&list);
 //
 
     ListDtor(&list);

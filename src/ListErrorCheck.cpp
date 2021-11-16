@@ -23,8 +23,9 @@ int ListErrorCheck(List* list, const char* func)
             printf("In Function %s: elem is nullptr\n", func);
             return ELEM_NULL_PTR;
         }
+
         if(strcmp(func, "ListInsertBack") == 0 || strcmp(func, "ListInsertFront") == 0 ||
-           strcmp(func, "ListInsertBefore") == 0)
+           strcmp(func, "ListInsertBefore") == 0 || strcmp(func, "ListInsertAfter") == 0)
         {
             if (list->free > list->capacity)
             {
@@ -39,6 +40,18 @@ int ListErrorCheck(List* list, const char* func)
                 return INSERT_ERROR;
             }
         }
+
+        if(strcmp(func, "ListDeleteBack") == 0 || strcmp(func, "ListDeleteFront") == 0 ||
+           strcmp(func, "ListDelete") == 0)
+        {
+            if (list->head == list->free)
+            {
+                printf("In Function %s: list is empty\n", func);
+                ListDump(list, __FUNCTION__);
+                return DELETE_ERROR;
+            }
+        }
+
     }
 
     return 0;

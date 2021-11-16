@@ -25,7 +25,8 @@ enum ListErrors
     LIST_DOUBLE_CTED = 4,
     LIST_IS_OVERFL   = 5,
     INSERT_ERROR     = 6,
-    REALLOC_ERROR    = 7,
+    DELETE_ERROR     = 7,
+    REALLOC_ERROR    = 8,
 };
 
 typedef struct ListElem
@@ -86,6 +87,8 @@ int ListInsertBefore(List* list, int position, data_t value);
 int ListInsertAfter(List* list, int position, data_t value);
 
 int ListDeleteBack(List* list);
+
+int ListDeleteFront(List* list);
 
 //---------ListErrorCheckFunctions---------
 

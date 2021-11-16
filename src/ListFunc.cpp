@@ -302,16 +302,10 @@ int ListDeleteBack(List* list)
 {
     LIST_CHECK(__FUNCTION__);
 
-    if (list->head == list->free)
-    {
-        printf("In Function ListDeleteBack: list is empty\n");
-        return INSERT_ERROR;
-    }
-
     list->elem[list->tail].data = 0; //1
 
     //First element
-    if(list->elem[list->tail].prev == 0)
+    if(list->head == list->tail)
     {
         list->elem[list->tail].next = list->free;
         list->elem[list->tail].prev = -1;
@@ -322,6 +316,7 @@ int ListDeleteBack(List* list)
     else
     {
         list->elem[list->tail].next = list->free; //2
+
         list->elem[list->elem[list->tail].prev].next = 0; //3
 
         list->free = list->tail; //4
@@ -329,6 +324,43 @@ int ListDeleteBack(List* list)
         list->tail = list->elem[list->tail].prev; //5
 
         list->elem[list->free].prev = -1; //6
+    }
+
+#ifdef LIST_DUMP
+    ListDump(list, __FUNCTION__);
+#endif
+
+    return list->tail;
+}
+
+int ListDeleteFront(List* list)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    list->elem[list->head].data = 0; //1
+
+    int old_free = list->free;
+
+    //First element
+    if(list->head == list->tail) //(list->head == list->tail)
+    {
+        list->elem[list->head].next = list->free;
+        list->elem[list->head].prev = -1;
+
+        list->free = list->head;
+    }
+    //Other element
+    else
+    {
+        list->elem[list->head].prev = -1; //2
+
+        list->elem[list->elem[list->head].next].prev = 0; //3
+
+        list->free = list->head; //4
+
+        list->head = list->elem[list->head].next; //5
+
+        list->elem[list->free].next = old_free; //6
     }
 
 #ifdef LIST_DUMP
