@@ -86,9 +86,13 @@ int ListInsertBefore(List* list, int position, data_t value);
 
 int ListInsertAfter(List* list, int position, data_t value);
 
+int ListInsertInstead(List* list, int position, data_t value);
+
 int ListDeleteBack(List* list);
 
 int ListDeleteFront(List* list);
+
+int ListDelete(List* list, int position);
 
 //---------ListErrorCheckFunctions---------
 
