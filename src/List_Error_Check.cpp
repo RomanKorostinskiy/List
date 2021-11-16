@@ -42,7 +42,8 @@ int ListErrorCheck(List* list, const char* func)
         }
 
         if(strcmp(func, "ListDeleteBack") == 0 || strcmp(func, "ListDeleteFront") == 0 ||
-           strcmp(func, "ListDelete") == 0)
+           strcmp(func, "ListGetBack") == 0 || strcmp(func, "ListGetFront") == 0 ||
+           strcmp(func, "ListDelete") == 0 || strcmp(func, "ListGet") == 0)
         {
             if (list->head == list->free)
             {

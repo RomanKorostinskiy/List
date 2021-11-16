@@ -1,0 +1,30 @@
+digraph Dump
+{
+	rankdir = LR;
+	"After function: ListInsertBack"
+
+	ListInfo [shape = record, label = " head: 1 | tail: 1 | free: 2 | capacity: 16 | sorted: 1 "];
+
+	Node0 [shape = record, label = " phys adr: 0 | logic adr: -1 | data: 0 | <next> next: 0 | <prev> prev: -1"];
+	Node1 [shape = record, label = " phys adr: 1 | logic adr: 1 | data: 145 | <next> next: 0 | <prev> prev: 0"];
+	Node2 [shape = record, label = " phys adr: 2 | logic adr: -1 | data: 0 | <next> next: 3 | <prev> prev: -1"];
+	Node3 [shape = record, label = " phys adr: 3 | logic adr: -1 | data: 0 | <next> next: 4 | <prev> prev: -1"];
+	Node4 [shape = record, label = " phys adr: 4 | logic adr: -1 | data: 0 | <next> next: 5 | <prev> prev: -1"];
+	Node5 [shape = record, label = " phys adr: 5 | logic adr: -1 | data: 0 | <next> next: 6 | <prev> prev: -1"];
+	Node6 [shape = record, label = " phys adr: 6 | logic adr: -1 | data: 0 | <next> next: 7 | <prev> prev: -1"];
+	Node7 [shape = record, label = " phys adr: 7 | logic adr: -1 | data: 0 | <next> next: 8 | <prev> prev: -1"];
+	Node8 [shape = record, label = " phys adr: 8 | logic adr: -1 | data: 0 | <next> next: 9 | <prev> prev: -1"];
+	Node9 [shape = record, label = " phys adr: 9 | logic adr: -1 | data: 0 | <next> next: 10 | <prev> prev: -1"];
+	Node10 [shape = record, label = " phys adr: 10 | logic adr: -1 | data: 0 | <next> next: 11 | <prev> prev: -1"];
+	Node11 [shape = record, label = " phys adr: 11 | logic adr: -1 | data: 0 | <next> next: 12 | <prev> prev: -1"];
+	Node12 [shape = record, label = " phys adr: 12 | logic adr: -1 | data: 0 | <next> next: 13 | <prev> prev: -1"];
+	Node13 [shape = record, label = " phys adr: 13 | logic adr: -1 | data: 0 | <next> next: 14 | <prev> prev: -1"];
+	Node14 [shape = record, label = " phys adr: 14 | logic adr: -1 | data: 0 | <next> next: 15 | <prev> prev: -1"];
+	Node15 [shape = record, label = " phys adr: 15 | logic adr: -1 | data: 0 | <next> next: 16 | <prev> prev: -1"];
+	Node16 [shape = record, label = " phys adr: 16 | logic adr: -1 | data: 0 | <next> next: 0 | <prev> prev: -1"];
+
+	edge[color=white]
+	Node0 -> Node1 -> Node2 -> Node3 -> Node4 -> Node5 -> Node6 -> Node7 -> Node8 -> Node9 -> Node10 -> Node11 -> Node12 -> Node13 -> Node14 -> Node15 -> Node16
+	edge[color=black]
+	Node1 -> Node0
+}

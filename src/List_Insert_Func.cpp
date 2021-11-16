@@ -41,6 +41,8 @@ int ListInsertFront(List* list, data_t value)
 {
     LIST_CHECK(__FUNCTION__);
 
+    list->sorted = 0;
+
     if(list->free == 0)
         ListResize(list);
 
@@ -86,6 +88,8 @@ int ListInsertBefore(List* list, int position, data_t value)
         return INSERT_ERROR;
     }
 
+    list->sorted = 0;
+
     if(list->free == 0)
         ListResize(list);
 
@@ -125,6 +129,8 @@ int ListInsertAfter(List* list, int position, data_t value)
         printf("In Function %s: can't insert after free node\n", __FUNCTION__);
         return INSERT_ERROR;
     }
+
+    list->sorted = 0;
 
     if(list->free == 0)
         ListResize(list);

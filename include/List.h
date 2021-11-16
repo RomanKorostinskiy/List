@@ -45,6 +45,8 @@ typedef struct List
     int head = 0;
     int tail = 0;
     int free = 0;
+
+    char sorted = 1;
 }List;
 
 #define LIST_CHECK(func)  \
@@ -60,7 +62,7 @@ do  \
 const int LIST_START_CAPACITY = 2;
 const int CAPACITY_STEP = 2;
 
-//---------ListFunctions---------
+//---------ListGeneralFunctions---------
 
 int ListCtor(List* list, int capacity);
 
@@ -74,9 +76,9 @@ int SetListMemResize(List* list, int old_capacity);
 
 int ListResize(List* list);
 
-int GetPhysAddress(List* list, int logical_adr);
+int ListSort (List* list);
 
-int GetLogicalAddress(List* list, int phys_adr);
+//---------ListInsertFunctions---------
 
 int ListInsertBack(List* list, int value);
 
@@ -88,11 +90,25 @@ int ListInsertAfter(List* list, int position, data_t value);
 
 int ListInsertInstead(List* list, int position, data_t value);
 
+//---------ListDeleteFunctions---------
+
 int ListDeleteBack(List* list);
 
 int ListDeleteFront(List* list);
 
 int ListDelete(List* list, int position);
+
+//---------ListGetFunctions---------
+
+int GetPhysAddress(List* list, int logical_adr);
+
+int GetLogicalAddress(List* list, int phys_adr);
+
+data_t ListGetDataFront(List* list);
+
+data_t ListGetDataBack(List* list);
+
+data_t ListGetData(List* list, int position);
 
 //---------ListErrorCheckFunctions---------
 
@@ -117,3 +133,5 @@ char* DumpFileName(int dump_cnt, const char* format);
 int ListInsertBackTest(List* list, int elems_num);
 
 int ListInsertFrontTest(List* list, int elems_num);
+
+int PrintListElems(List* list);

@@ -39,6 +39,8 @@ int ListDeleteFront(List* list)
 {
     LIST_CHECK(__FUNCTION__);
 
+    list->sorted = 0;
+
     list->elem[list->head].data = 0; //1
 
     int old_free = list->free;
@@ -81,6 +83,8 @@ int ListDelete(List* list, int position)
         printf("In Function %s: can't delete free node\n", __FUNCTION__);
         return DELETE_ERROR;
     }
+
+    list->sorted = 0;
 
     list->elem[position].data = 0; //1
 

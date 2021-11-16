@@ -33,3 +33,30 @@ int GetLogicalAddress(List* list, int phys_adr)
 
     return logical_adr;
 }
+
+data_t ListGetDataFront(List* list)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    return list->elem[list->head].data;
+}
+
+data_t ListGetDataBack(List* list)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    return list->elem[list->tail].data;
+}
+
+data_t ListGetData(List* list, int position)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    if(list->elem[position].prev == -1)
+    {
+        printf("In Function %s: can't get data from free node\n", __FUNCTION__);
+        return DELETE_ERROR;
+    }
+
+    return list->elem[position].data;
+}

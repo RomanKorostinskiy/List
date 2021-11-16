@@ -59,8 +59,8 @@ int MakeGraphDumpTxt(List* list, const char* current_function, int dump_cnt)
     fprintf(dump_fp, "\t\"After function: %s\"\n\n", current_function);
 
     fprintf(dump_fp, "\tListInfo [shape = record, label = "
-                     "\" head: %d | tail: %d | free: %d | capacity: %d \"];\n\n",
-            list->head, list->tail, list->free, list->capacity);
+                     "\" head: %d | tail: %d | free: %d | capacity: %d | sorted: %d \"];\n\n",
+            list->head, list->tail, list->free, list->capacity, list->sorted);
 
     for(int i = 0; i <= list->capacity; i++)
     {

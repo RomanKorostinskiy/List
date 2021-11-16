@@ -42,12 +42,16 @@ int SetListMemCtor(List* list)
 
     for(int i = 1; i <= list->capacity; i++)
     {
+        list->elem[i].data = 0;
         list->elem[i].next = i + 1;
         list->elem[i].prev = -1;
     }
 
     list->elem[list->capacity].next = 0;
-    list->elem[0].prev              = -1;
+
+    list->elem[0].data = 0;
+    list->elem[0].next = 0;
+    list->elem[0].prev = -1;
 
     return 0;
 }
@@ -56,7 +60,7 @@ int SetListMemPoison(List* list)
 {
     LIST_CHECK(__FUNCTION__);
 
-    for(int i = 1; i < list->capacity; i++)
+    for(int i = 0; i <= list->capacity; i++)
     {
         list->elem[i].data = (int)0xBEDABEDA;
         list->elem[i].next = (int)0xBEDABEDA;
@@ -100,6 +104,40 @@ int ListResize(List* list)
     list->free = old_capacity + 1;
 
     SetListMemResize(list, old_capacity);
+
+#ifdef LIST_DUMP
+    ListDump(list, __FUNCTION__);
+#endif
+
+    return 0;
+}
+
+int ListSort (List* list)
+{
+    LIST_CHECK(__FUNCTION__);
+
+    List sorting_list = {};
+
+    ListCtor(&sorting_list, list->capacity);
+
+    int old_elem_adr = list->head;
+
+    while(true)
+    {
+        if (list->elem[old_elem_adr].next == 0)
+        {
+            ListInsertBack(&sorting_list, list->elem[old_elem_adr].data);
+            break;
+        }
+
+        ListInsertBack(&sorting_list, list->elem[old_elem_adr].data);
+
+        old_elem_adr = list->elem[old_elem_adr].next;
+    }
+
+    ListDtor(list);
+
+    *list = sorting_list;
 
 #ifdef LIST_DUMP
     ListDump(list, __FUNCTION__);

@@ -3,7 +3,7 @@ digraph Dump
 	rankdir = LR;
 	"After function: ListInsertBefore"
 
-	ListInfo [shape = record, label = " head: 5 | tail: 3 | free: 7 | capacity: 8 "];
+	ListInfo [shape = record, label = " head: 5 | tail: 3 | free: 7 | capacity: 8 | sorted: 0 "];
 
 	Node0 [shape = record, label = " phys adr: 0 | logic adr: -1 | data: 0 | <next> next: 0 | <prev> prev: -1"];
 	Node1 [shape = record, label = " phys adr: 1 | logic adr: 4 | data: 10 | <next> next: 2 | <prev> prev: 4"];
@@ -11,7 +11,7 @@ digraph Dump
 	Node3 [shape = record, label = " phys adr: 3 | logic adr: 6 | data: 30 | <next> next: 0 | <prev> prev: 2"];
 	Node4 [shape = record, label = " phys adr: 4 | logic adr: 3 | data: 9 | <next> next: 1 | <prev> prev: 6"];
 	Node5 [shape = record, label = " phys adr: 5 | logic adr: 1 | data: 8 | <next> next: 6 | <prev> prev: 0"];
-	Node6 [shape = record, label = " phys adr: 6 | logic adr: 2 | data: 1 | <next> next: 4 | <prev> prev: 5"];
+	Node6 [shape = record, label = " phys adr: 6 | logic adr: 2 | data: 145 | <next> next: 4 | <prev> prev: 5"];
 	Node7 [shape = record, label = " phys adr: 7 | logic adr: -1 | data: 0 | <next> next: 8 | <prev> prev: -1"];
 	Node8 [shape = record, label = " phys adr: 8 | logic adr: -1 | data: 0 | <next> next: 0 | <prev> prev: -1"];
 
