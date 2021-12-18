@@ -15,7 +15,7 @@ typedef int data_t;
 typedef double data_t;
 #endif
 
-#define LIST_DUMP
+//#define LIST_DUMP
 
 enum ListErrors
 {
